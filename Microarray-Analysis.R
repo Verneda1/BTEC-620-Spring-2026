@@ -18,3 +18,11 @@ data <- ReadAffy()
 boxplot(data)
 
 # Normalize the dataset to remove ant outliers and stable the median for all .CEL files 
+normalizedata <-rma(data)
+
+#Generate a boxplot to vissualize normalized dataset 
+boxplot(exprs(normalizeddata))
+
+#Fold change analysis for comparing treatment vs control samples
+
+#Lets assume GSM4843.CEL and GSM4844.CEL samples to be Leukemia/Blood cancer and GSM4845.CEL and GSM4846.CEL to be normal blood samples
