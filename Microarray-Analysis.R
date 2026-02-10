@@ -1,14 +1,15 @@
 #Name: Verneda Ritter; Date:01/27/2026; Purpose: Microarray Analysis 
 
 #Install Affymetrix library/Package 
-
 if (!require("BiocManager", quietly = TRUE))
 +     install.packages("BiocManager")
 
 BiocManager::install("affy")
 
+#Load the library Affy
 library(affy)
 
+#Set the working directory to a floder where you have .CEL files
 setwd("/Users/verneda/Desktop")
 
 #Read the 4 .CEL files in R
@@ -39,3 +40,7 @@ Controlaverage <-rowMeans(Control)
 #Apply fold change by subtraction 
 foldchange <-Treatmentaverage - Controlaverage
 
+#If genes fold change value if >2 its an up-regulated gene, and if its <-2 its a down-regulated gene, and if genes are between -2 and +2 they are insignificant genes 
+
+#Export variable foldchange in an CSV file 
+write.csv(foldchange,"foldchange.csv") 
